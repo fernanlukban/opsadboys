@@ -1,7 +1,5 @@
 import Link from 'next/link'
 
-import getFolders from '@/lib/indexlib'
-
 export default function NavBar({ folders }) {
   return (
 	<>
