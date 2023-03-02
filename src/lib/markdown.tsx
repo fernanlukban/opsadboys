@@ -1,8 +1,10 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
+import { remark } from 'remark'
+import html from 'remark-html'
 
-export function getAllMarkdownFileIds(directory) {
+export async function getAllMarkdownFileIds(directory) {
 	const fileNames = fs.readdirSync(directory);
 	return fileNames.map((fileName) => {
 		return {
@@ -16,7 +18,7 @@ export function getAllMarkdownFileIds(directory) {
 type SortingFunction<Type> = (left: Type, right: Type) => int;
 type PostProcessingFunction<Type> = (matter) => {Object};
 
-export function getSortedMarkdown<Type>(directory: string, sorter: SortingFunction<Type>, postProcesser: PostProcessingFunction<Type>) {
+export async function getSortedMarkdown<Type>(directory: string, sorter: SortingFunction<Type>, postProcesser: PostProcessingFunction<Type>) {
 	const fileNames = fs.readdirSync(directory);
 	const allMarkdownData = fileNames.map(fileName => {
 		const id = fileName.replace(/\.md$/, '');
@@ -37,14 +39,19 @@ export function getSortedMarkdown<Type>(directory: string, sorter: SortingFuncti
 	return allMarkdownData.sort(sorter);
 }
 
-export function getMarkdownData(directory: string, id: string) {
+export async function getMarkdownData(directory: string, id: string) {
 	const fullPath = path.join(directory, `${id}.md`)
 	const fileContents = fs.readFileSync(fullPath, 'utf-8')
 
 	const matterResult = matter(fileContents)
 
+	const processedContent = await remark().use(html).process(matterResult.content)
+
+	const contentHtml = processedContent.toString()
+
 	return {
 		id,
+		contentHtml,
 		...matterResult.data
 	}
 }

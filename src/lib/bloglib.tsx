@@ -4,18 +4,18 @@ import {getSortedMarkdown, getAllMarkdownFileIds, getMarkdownData} from '@/lib/m
 
 const blogPostsDirectory = path.join(process.cwd(), 'src', 'pages', 'blog', 'posts');
 
-export function getSortedBlogPostsData() {
-	return getSortedMarkdown(
+export async function getSortedBlogPostsData() {
+	return await getSortedMarkdown(
 		blogPostsDirectory,
 		(left, right) => left.date < right.date ? 1 : -1,
 		(matter) => matter,
 	)
 }
 
-export function getAllBlogPostIds() {
-	return getAllMarkdownFileIds(blogPostsDirectory)
+export async function getAllBlogPostIds() {
+	return await getAllMarkdownFileIds(blogPostsDirectory)
 }
 
-export function getBlogPostData(id) {
-	return getMarkdownData(blogPostsDirectory, id)
+export async function getBlogPostData(id) {
+	return await getMarkdownData(blogPostsDirectory, id)
 }

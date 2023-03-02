@@ -5,12 +5,13 @@ export default function BlogPost({ postData }) {
 		<>
 			<h1>{postData.title}</h1>
 			<h2>{postData.date}</h2>
+			<div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
 		</>
 	)
 }
 
 export async function getStaticPaths() {
-	const paths = getAllBlogPostIds();
+	const paths = await getAllBlogPostIds()
 	return {
 		paths,
 		fallback: false
@@ -18,7 +19,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-	const postData = getBlogPostData(params.id)
+	const postData = await getBlogPostData(params.id)
+
 	return {
 		props: {
 			postData
