@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export default function NavBar({ folders }) {
+export default function NavBar() {
   return (
 	<>
 		<div className="grid grid-rows-2 bg-indigo-200">
