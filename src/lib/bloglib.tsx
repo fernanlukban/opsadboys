@@ -7,7 +7,7 @@ const blogPostsDirectory = path.join(process.cwd(), 'src', 'pages', 'blog', 'pos
 export async function getSortedBlogPostsData() {
 	return await getSortedMarkdown(
 		blogPostsDirectory,
-		(left, right) => left.date < right.date ? 1 : -1,
+		(left: Object, right: Object) => left.date < right.date ? 1 : -1,
 		(matter) => matter,
 	)
 }
