@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { PropsWithChildren } from 'react'
 
 import PostTitle from '@/components/posttitle'
+import PageTitle from '@/components/pagetitle'
 
 type IndexPageProps = {
 	pageName: string;
@@ -12,9 +13,7 @@ type IndexPageProps = {
 export default function IndexPage({ children, pageName, pagePath, posts } : PropsWithChildren<IndexPageProps>) {
 	return (
 		<>
-			<div className="flex justify-center text-xl font-bold">
-				{pageName}
-			</div>
+			<PageTitle pageName={pageName} />
 			<div>
 				{posts ? posts.map(
 					(post) => (
