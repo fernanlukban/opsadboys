@@ -20,8 +20,8 @@ export interface MarkdownPost {
 	id: string;
 	date: Date;
 	title: string;
-	content: string;
-	contentHtml: string;
+	content?: string;
+	contentHtml?: string;
 }
 
 type SortingFunction = (left: MarkdownPost, right: MarkdownPost) => number;
