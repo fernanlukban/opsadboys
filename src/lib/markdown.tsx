@@ -1,10 +1,11 @@
 import fs from 'fs'
 import path from 'path'
+import { GrayMatterFile } from 'gray-matter'
 import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
 
-export async function getAllMarkdownFileIds(directory) {
+export async function getAllMarkdownFileIds(directory: string) {
 	const fileNames = fs.readdirSync(directory);
 	return fileNames.map((fileName) => {
 		return {
@@ -15,10 +16,17 @@ export async function getAllMarkdownFileIds(directory) {
 	});
 }
 
-type SortingFunction<Type> = (left: Type, right: Type) => int;
-type PostProcessingFunction<Type> = (matter) => {Object};
+export interface MarkdownPost {
+	id: string;
+	date: Date;
+	title: string;
+	content: string;
+	contentHtml: string;
+}
 
-export async function getSortedMarkdown<Type>(directory: string, sorter: SortingFunction<Type>, postProcesser: PostProcessingFunction<Type>) {
+type SortingFunction = (left: MarkdownPost, right: MarkdownPost) => number;
+
+export async function getSortedMarkdown(directory: string, sorter: SortingFunction) {
 	const fileNames = fs.readdirSync(directory);
 	const allMarkdownData = fileNames.map(fileName => {
 		const id = fileName.replace(/\.md$/, '');
@@ -28,11 +36,11 @@ export async function getSortedMarkdown<Type>(directory: string, sorter: Sorting
 
 		const matterResult = matter(fileContents);
 
-		const processedMatterResult = postProcesser(matterResult);
-
 		return {
 			id,
-			...processedMatterResult.data
+			date: matterResult.data.date as Date,
+			title: matterResult.data.title,
+			...matterResult.data
 		};
 	});
 

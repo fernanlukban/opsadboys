@@ -1,14 +1,14 @@
 import path from 'path'
+import { GrayMatterFile } from 'gray-matter'
 
-import {getSortedMarkdown, getAllMarkdownFileIds, getMarkdownData} from '@/lib/markdown'
+import {getSortedMarkdown, getAllMarkdownFileIds, getMarkdownData, MarkdownPost} from '@/lib/markdown'
 
 const blogPostsDirectory = path.join(process.cwd(), 'src', 'pages', 'blog', 'posts');
 
 export async function getSortedBlogPostsData() {
 	return await getSortedMarkdown(
 		blogPostsDirectory,
-		(left: Object, right: Object) => left.date < right.date ? 1 : -1,
-		(matter) => matter,
+		(left: MarkdownPost, right: MarkdownPost) => left.date < right.date ? 1 : -1,
 	)
 }
 
@@ -16,6 +16,6 @@ export async function getAllBlogPostIds() {
 	return await getAllMarkdownFileIds(blogPostsDirectory)
 }
 
-export async function getBlogPostData(id) {
+export async function getBlogPostData(id: string) {
 	return await getMarkdownData(blogPostsDirectory, id)
 }

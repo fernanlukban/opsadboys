@@ -1,11 +1,13 @@
 import { getAllBlogPostIds, getBlogPostData } from '@/lib/bloglib'
+import PostTitle from '@/components/posttitle'
 
 export default function BlogPost({ postData }) {
 	return (
 		<>
-			<h1>{postData.title}</h1>
-			<h2>{postData.date}</h2>
+		<PostTitle date={postData.date} title={postData.title} />
+		<div className="blogPost">
 			<div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+		</div>
 		</>
 	)
 }

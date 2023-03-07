@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  ul {
+    @apply indent-8;
+    list-style-type: square;
+    list-style-position: inside;
+  }
+
+  .blogPost p {
+    @apply indent-4;
+  }
+}

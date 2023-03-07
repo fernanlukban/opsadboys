@@ -1,25 +1,14 @@
 import Link from 'next/link'
 
+import IndexPage from '@/components/indexpage'
 import { getSortedRecipePostsData } from '@/lib/recipelib'
 
 function Recipe({ posts }) {
-	return (
-		<>
-			<div>
-				blog
-			</div>
-			<div>
-				{posts.map(
-					(post) => (
-						<div>
-							<Link href={`/blog/${post.id}`} className="hover:underline">{post.title}</Link>
-							<p>{post.date}</p>
-						</div>
-					)
-				)}
-			</div>
-		</>
-	)
+	return IndexPage({
+		pageName: 'recipes',
+		pagePath: 'recipes',
+		posts
+	});
 }
 
 export async function getStaticProps() {

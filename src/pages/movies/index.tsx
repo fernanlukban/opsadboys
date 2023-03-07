@@ -1,3 +1,9 @@
-export default function Movies() {
-	return <div>movies</div>;
+import IndexPage from '@/components/indexpage'
+
+export default function Movies({ posts }) {
+	return IndexPage({
+		pageName: 'movies',
+		pagePath: 'movies',
+		posts
+	});
 }
