@@ -2,9 +2,13 @@ import Link from 'next/link'
 
 import IndexPage from '@/components/indexpage'
 import { getSortedBlogPostsData } from '@/lib/bloglib'
-import { MarkdownResult } from '@/lib/markdown'
+import { MarkdownPost } from '@/lib/markdown'
 
-function Blog({ posts } : { posts: [MarkdownResult] }) {
+type BlogPageProps = {
+	posts: MarkdownPost[];
+}
+
+function BlogPage({ posts }: BlogPageProps) {
 	return IndexPage({
 		pageName: 'blog',
 		pagePath: 'blog',
@@ -21,4 +25,4 @@ export async function getStaticProps() {
 	}
 }
 
-export default Blog
+export default BlogPage

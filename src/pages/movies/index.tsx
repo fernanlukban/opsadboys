@@ -1,6 +1,11 @@
 import IndexPage from '@/components/indexpage'
+import { MarkdownPost } from '@/lib/markdown'
 
-export default function Movies({ posts }) {
+type MoviesPageProp = {
+	posts: MarkdownPost[];
+}
+
+export default function Movies({ posts }: MoviesPageProp) {
 	return IndexPage({
 		pageName: 'movies',
 		pagePath: 'movies',

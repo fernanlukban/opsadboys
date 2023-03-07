@@ -2,8 +2,13 @@ import Link from 'next/link'
 
 import IndexPage from '@/components/indexpage'
 import { getSortedRecipePostsData } from '@/lib/recipelib'
+import { MarkdownPost } from '@/lib/markdown'
 
-function Recipe({ posts }) {
+type RecipePageProps = {
+	posts: MarkdownPost[];
+}
+
+function RecipePage({ posts }: RecipePageProps) {
 	return IndexPage({
 		pageName: 'recipes',
 		pagePath: 'recipes',
@@ -20,4 +25,4 @@ export async function getStaticProps() {
 	}
 }
 
-export default Recipe
+export default RecipePage

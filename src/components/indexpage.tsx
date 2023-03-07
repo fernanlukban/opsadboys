@@ -3,11 +3,12 @@ import { PropsWithChildren } from 'react'
 
 import PostTitle from '@/components/posttitle'
 import PageTitle from '@/components/pagetitle'
+import { MarkdownPost } from '@/lib/markdown'
 
 type IndexPageProps = {
 	pageName: string;
 	pagePath: string;
-	posts: MarkdownPost;
+	posts: MarkdownPost[];
 }
 
 export default function IndexPage({ children, pageName, pagePath, posts } : PropsWithChildren<IndexPageProps>) {

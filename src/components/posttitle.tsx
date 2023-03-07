@@ -4,5 +4,5 @@ type PostTitleProps = {
 }
 
 export default function PostTitle({ date, title } : PostTitleProps) {
-	return <p>{date} % {title}</p>
+	return <p>{`${date} % {title}`}</p>
 }

@@ -1,13 +1,13 @@
 import path from 'path'
 
-import {getSortedMarkdown, getAllMarkdownFileIds, getMarkdownData, MarkdownResult} from '@/lib/markdown'
+import {getSortedMarkdown, getAllMarkdownFileIds, getMarkdownData, MarkdownPost} from '@/lib/markdown'
 
 const recipePostsDirectory = path.join(process.cwd(), 'src', 'pages', 'recipes', 'posts');
 
 export async function getSortedRecipePostsData() {
 	return await getSortedMarkdown(
 		recipePostsDirectory,
-		(left: MarkdownResult, right: MarkdownResult) => left.date < right.date ? 1 : -1,
+		(left: MarkdownPost, right: MarkdownPost) => left.date < right.date ? 1 : -1,
 	)
 }
 

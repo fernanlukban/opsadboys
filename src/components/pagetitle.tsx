@@ -1,6 +1,11 @@
 import Link from 'next/link'
 
-export default function PageTitle({ pageName, path}) {
+type PageTitleProps = {
+	pageName: string;
+	path?: string;
+};
+
+export default function PageTitle({ pageName, path}: PageTitleProps) {
 	const className = "flex justify-center text-xl font-bold"
 	if (!path) {
 		return <h2 className={className}>{pageName}</h2>

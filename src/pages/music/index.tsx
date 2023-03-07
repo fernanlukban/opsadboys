@@ -1,6 +1,11 @@
 import IndexPage from '@/components/indexpage'
+import { MarkdownPost } from '@/lib/markdown'
 
-export default function Music({ posts }) {
+type MusicPageProps = {
+	posts: MarkdownPost[];
+};
+
+export default function MusicPage({ posts }: MusicPageProps) {
 	return IndexPage({
 		pageName: 'music',
 		pagePath: 'music',
