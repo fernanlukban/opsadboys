@@ -10,6 +10,8 @@ export default function Home() {
         <title>opsadboys</title>
       </Head>
       <main>
+				<h1>Welcome</h1>
+				<p>I am fern</p>
       </main>
     </>
   )
