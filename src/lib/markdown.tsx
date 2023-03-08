@@ -18,6 +18,7 @@ export async function getAllMarkdownFileIds(directory: string) {
 
 export interface MarkdownPost {
 	id: string;
+	path: string;
 	date: Date;
 	title: string;
 	content?: string;
@@ -38,6 +39,7 @@ export async function getSortedMarkdown(directory: string, sorter: SortingFuncti
 
 		return {
 			id,
+			path: path.basename(directory.replace(/\/posts/, '')),
 			date: matterResult.data.date as Date,
 			title: matterResult.data.title,
 			...matterResult.data
@@ -45,6 +47,14 @@ export async function getSortedMarkdown(directory: string, sorter: SortingFuncti
 	});
 
 	return allMarkdownData.sort(sorter);
+}
+
+export async function getAllSortedMarkdown(directories: string[], sorter: SortingFunction) {
+	const allMarkdownData = directories.map(directory => getSortedMarkdown(directory, sorter))
+	const allMarkdownDataAwaited = await Promise.all(allMarkdownData)
+	const allMarkdownDataFlat = allMarkdownDataAwaited.flat()
+
+	return allMarkdownDataFlat.sort(sorter);
 }
 
 export async function getMarkdownData(directory: string, id: string) {
