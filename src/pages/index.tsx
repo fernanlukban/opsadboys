@@ -21,7 +21,7 @@ export default function Home({ readme, posts }: HomeProps) {
         <title>opsadboys</title>
       </Head>
       <main>
-				<div dangerouslySetInnerHTML={{ __html: readme.contentHtml }} />
+				<div dangerouslySetInnerHTML={{ __html: readme.contentHtml ? readme.contentHtml : ""}} />
 				<IndexPage pageName="recent posts" posts={posts} />
       </main>
     </>
