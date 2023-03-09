@@ -6,9 +6,5 @@ type MoviesPageProp = {
 }
 
 export default function Movies({ posts }: MoviesPageProp) {
-	return IndexPage({
-		pageName: 'movies',
-		pagePath: 'movies',
-		posts
-	});
+	return <IndexPage pageName="movies" posts={posts} />
 }

@@ -19,7 +19,7 @@ export default function Home({ posts }: HomeProps) {
       <main>
 				<h1>Welcome</h1>
 				<p>I am fern</p>
-				<IndexPage pageName="recent posts" pagePath="/" posts={posts} />
+				<IndexPage pageName="recent posts" posts={posts} />
       </main>
     </>
   )

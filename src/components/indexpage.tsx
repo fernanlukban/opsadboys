@@ -7,11 +7,10 @@ import { MarkdownPost } from '@/lib/markdown'
 
 type IndexPageProps = {
 	pageName: string;
-	pagePath: string;
 	posts: MarkdownPost[];
 }
 
-export default function IndexPage({ children, pageName, pagePath, posts } : PropsWithChildren<IndexPageProps>) {
+export default function IndexPage({ children, pageName, posts } : PropsWithChildren<IndexPageProps>) {
 	return (
 		<>
 			<PageTitle pageName={pageName} />

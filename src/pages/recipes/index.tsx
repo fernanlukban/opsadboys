@@ -9,11 +9,7 @@ type RecipePageProps = {
 }
 
 function RecipePage({ posts }: RecipePageProps) {
-	return IndexPage({
-		pageName: 'recipes',
-		pagePath: 'recipes',
-		posts
-	});
+	return <IndexPage pageName="recipes" posts={posts} />
 }
 
 export async function getStaticProps() {
