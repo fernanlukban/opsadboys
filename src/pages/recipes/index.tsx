@@ -9,7 +9,11 @@ type RecipePageProps = {
 }
 
 function RecipePage({ posts }: RecipePageProps) {
-	return <IndexPage pageName="recipes" posts={posts} />
+	return (
+		<IndexPage pageName="recipes" posts={posts}>
+			do u even like food?
+		</IndexPage>
+	)
 }
 
 export async function getStaticProps() {

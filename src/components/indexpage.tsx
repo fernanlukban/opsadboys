@@ -15,6 +15,9 @@ export default function IndexPage({ children, pageName, posts } : PropsWithChild
 		<>
 			<PageTitle pageName={pageName} />
 			<div>
+				{children}
+			</div>
+			<div>
 				{posts ? posts.map(
 					(post) => (
 						<div key={post.id} className="flex flex-row">
@@ -25,9 +28,6 @@ export default function IndexPage({ children, pageName, posts } : PropsWithChild
 					)
 				) : null}
 			</div>
-			<div>
-				{children}
-			</div>
-		</>
+	</>
 	)
 }
