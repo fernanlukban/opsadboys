@@ -6,5 +6,11 @@ type MusicPageProps = {
 };
 
 export default function MusicPage({ posts }: MusicPageProps) {
-	return <IndexPage pageName="music" posts={posts} />
+	return (
+		<>
+			<IndexPage pageName="music" posts={posts}>
+				oh you like music? name 5 albums	
+			</IndexPage>
+		</>
+	);
 }

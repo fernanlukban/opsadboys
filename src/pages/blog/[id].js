@@ -1,3 +1,5 @@
+import Head from 'next/head'
+
 import { getAllBlogPostIds, getBlogPostData } from '@/lib/bloglib'
 import PostTitle from '@/components/posttitle'
 import PageTitle from '@/components/pagetitle'
@@ -5,6 +7,9 @@ import PageTitle from '@/components/pagetitle'
 export default function BlogPost({ postData }) {
 	return (
 		<>
+		<Head>
+			<title>{postData.title}</title>
+		</Head>
 		<PageTitle pageName="blog" path="/blog" />
 		<PostTitle date={postData.date} title={postData.title} />
 		<div className="blogPost">

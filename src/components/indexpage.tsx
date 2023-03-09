@@ -23,7 +23,10 @@ export default function IndexPage({ children, pageName, posts } : PropsWithChild
 							</Link>
 						</div>
 					)
-				) : children}
+				) : null}
+			</div>
+			<div>
+				{children}
 			</div>
 		</>
 	)
