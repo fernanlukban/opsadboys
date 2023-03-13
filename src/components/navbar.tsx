@@ -1,5 +1,7 @@
 import Link from 'next/link'
 
+import AlternateText from '@/components/alternatetext'
+
 export default function NavBar() {
   return (
 	<>
@@ -13,8 +15,8 @@ export default function NavBar() {
 					<Link href="/movies" className="hover:underline">movies</Link>
 				</div>
 				<div className="flex flex-row gap-x-3 absolute right-0 mr-2">
-					<Link href="https://twitter.com/opsadboys" className="hover:underline">twitter</Link>
-					<Link href="https://instagram.com/fernanlukban" className="hover:underline">instagram</Link>
+					<Link href="https://twitter.com/opsadboys" className="hover:underline"><AlternateText text={'twitter'} alternateText={'t'} /></Link>
+					<Link href="https://instagram.com/fernanlukban" className="hover:underline"><AlternateText text={'instagram'} alternateText={'ig'} /></Link>
 				</div>
 			</div>
 		</div>
