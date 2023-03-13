@@ -14,9 +14,10 @@ export default function IndexPage({ children, pageName, posts } : PropsWithChild
 	return (
 		<>
 			<PageTitle pageName={pageName} />
-			<div>
+			<div className="mt-2">
 				{children}
 			</div>
+			<hr className="mt-2 mb-2" />
 			<div>
 				{posts ? posts.map(
 					(post) => (
