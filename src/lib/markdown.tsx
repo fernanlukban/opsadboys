@@ -19,7 +19,7 @@ export async function getAllMarkdownFileIds(directory: string) {
 export interface MarkdownPost {
 	id: string;
 	path: string;
-	date: Date;
+	date: string;
 	title: string;
 	content?: string;
 	contentHtml?: string;
