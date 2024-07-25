@@ -2,7 +2,7 @@ import path from 'path'
 
 import {getSortedMarkdown, getAllMarkdownFileIds, getMarkdownData, MarkdownPost} from '@/lib/markdown'
 
-const blogPostsDirectory = path.join(process.cwd(), 'src', 'pages', 'blog', 'posts');
+const blogPostsDirectory = path.join(process.cwd(), 'posts', 'blog');
 
 export async function getSortedBlogPostsData() {
 	return await getSortedMarkdown(
