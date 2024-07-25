@@ -23,7 +23,7 @@ export default function IndexPage({ children, pageName, posts } : PropsWithChild
 					(post) => (
 						<div key={post.id} className="flex flex-row">
 							<Link href={`/${post.path}/${post.id}`} className="hover:underline">
-								<PostListing date={post.date} title={post.title}/>
+								<PostListing date={new Date(Date.parse(post.date))} title={post.title}/>
 							</Link>
 						</div>
 					)
