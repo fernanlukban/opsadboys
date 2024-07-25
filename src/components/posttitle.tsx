@@ -4,8 +4,8 @@ type PostTitleProps = {
 }
 
 export default function PostTitle({ date, title } : PostTitleProps) {
-	return <div className="flex">
-    <p className="float-left">{`${title}`}</p>
+	return <div className="flow-root">
+    <p className="float-left font-bold">{`${title}`}</p>
     <p className="float-right">{`[${date}]`}</p> 
   </div>
 }
