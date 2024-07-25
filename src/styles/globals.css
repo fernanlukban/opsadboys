@@ -4,12 +4,8 @@
 
 @layer base {
   ul {
-    @apply indent-8;
+    @apply indent-4;
     list-style-type: square;
     list-style-position: inside;
-  }
-
-  .blogPost p {
-    @apply indent-4;
   }
 }

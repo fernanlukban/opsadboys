@@ -1,5 +1,4 @@
 import path from 'path'
-import { GrayMatterFile } from 'gray-matter'
 
 import {getSortedMarkdown, getAllMarkdownFileIds, getMarkdownData, MarkdownPost} from '@/lib/markdown'
 

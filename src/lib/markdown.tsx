@@ -10,7 +10,7 @@ export async function getAllMarkdownFileIds(directory: string) {
 	return fileNames.map((fileName) => {
 		return {
 			params: {
-				id: fileName.replace(/\.md$/, ''),
+				id: fileName.replace(/\.mdx$/, ''),
 			}
 		}
 	});
@@ -27,23 +27,28 @@ export interface MarkdownPost {
 
 type SortingFunction = (left: MarkdownPost, right: MarkdownPost) => number;
 
-export async function getSortedMarkdown(directory: string, sorter: SortingFunction) {
+function defaultSortByDate(left: MarkdownPost, right: MarkdownPost) {
+  return left.date < right.date ? 1 : -1;
+}
+
+export async function getSortedMarkdown(directory: string, sorter: SortingFunction = defaultSortByDate) {
 	const fileNames = fs.readdirSync(directory);
 	const allMarkdownData = fileNames.map(fileName => {
-		const id = fileName.replace(/\.md$/, '');
+		const id = fileName.replace(/\.mdx$/, '');
 
 		const fullPath = path.join(directory, fileName);
 		const fileContents = fs.readFileSync(fullPath, 'utf-8');
 
 		const matterResult = matter(fileContents);
-
-		return {
+		const result = {
+			...matterResult.data,
 			id,
 			path: path.basename(directory.replace(/\/posts/, '')),
-			date: matterResult.data.date as Date,
-			title: matterResult.data.title,
-			...matterResult.data
+			date: JSON.parse(JSON.stringify(new Date(Date.parse(matterResult.data.date)))),
+			title: matterResult.data.title
 		};
+    console.log(result);
+    return result;
 	});
 
 	return allMarkdownData.sort(sorter);
@@ -51,14 +56,15 @@ export async function getSortedMarkdown(directory: string, sorter: SortingFuncti
 
 export async function getAllSortedMarkdown(directories: string[], sorter: SortingFunction) {
 	const allMarkdownData = directories.map(directory => getSortedMarkdown(directory, sorter))
+  console.log(allMarkdownData);
 	const allMarkdownDataAwaited = await Promise.all(allMarkdownData)
 	const allMarkdownDataFlat = allMarkdownDataAwaited.flat()
-
+  console.log(allMarkdownDataFlat);
 	return allMarkdownDataFlat.sort(sorter);
 }
 
 export async function getMarkdownData(directory: string, id: string) {
-	const fullPath = path.join(directory, `${id}.md`)
+	const fullPath = path.join(directory, `${id}.mdx`)
 	const fileContents = fs.readFileSync(fullPath, 'utf-8')
 
 	const matterResult = matter(fileContents)

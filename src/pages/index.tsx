@@ -1,10 +1,8 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import path from 'path'
 
 import { getSortedPostsData } from '@/lib/indexlib'
 import { MarkdownPost, getMarkdownData } from '@/lib/markdown'
-import PageTitle from '@/components/pagetitle'
 import IndexPage from '@/components/indexpage'
 
 const readmePath = path.join('src', 'info')
@@ -15,6 +13,8 @@ type HomeProps = {
 }
 
 export default function Home({ readme, posts }: HomeProps) {
+
+          console.log(posts);
   return (
     <>
       <Head>
@@ -22,7 +22,9 @@ export default function Home({ readme, posts }: HomeProps) {
       </Head>
       <main>
 				<div className="readme" dangerouslySetInnerHTML={{ __html: readme.contentHtml ? readme.contentHtml : ""}} />
-				<IndexPage pageName="recent posts" posts={posts} />
+				<IndexPage pageName="opsadboys" posts={posts}>
+          <p> please don't get lost here, these are remnants of a mind constantly in motion </p>
+        </IndexPage>
       </main>
     </>
   )

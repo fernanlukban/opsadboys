@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { PropsWithChildren } from 'react'
 
-import PostTitle from '@/components/posttitle'
+import PostListing from '@/components/postlisting'
 import PageTitle from '@/components/pagetitle'
 import { MarkdownPost } from '@/lib/markdown'
 
@@ -23,7 +23,7 @@ export default function IndexPage({ children, pageName, posts } : PropsWithChild
 					(post) => (
 						<div key={post.id} className="flex flex-row">
 							<Link href={`/${post.path}/${post.id}`} className="hover:underline">
-								<PostTitle date={post.date} title={post.title}/>
+								<PostListing date={post.date} title={post.title}/>
 							</Link>
 						</div>
 					)

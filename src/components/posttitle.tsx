@@ -4,5 +4,8 @@ type PostTitleProps = {
 }
 
 export default function PostTitle({ date, title } : PostTitleProps) {
-	return <p>{`${date} % ${title}`}</p>
+	return <div className="flex">
+    <p className="float-left">{`${title}`}</p>
+    <p className="float-right">{`[${date}]`}</p> 
+  </div>
 }
